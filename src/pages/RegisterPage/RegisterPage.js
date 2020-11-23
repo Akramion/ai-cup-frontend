@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {registerUser} from "../../redux/actions/actions";
 import {useForm} from "react-hook-form";
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
 
 
     const {register, handleSubmit} = useForm();
@@ -33,5 +33,3 @@ const RegisterPage = () => {
     )
 }
 
-
-export default RegisterPage;

@@ -1,6 +1,7 @@
 import {takeLatest, put, call} from 'redux-saga/effects'
-import {REGISTER_USER, putUser, LOGIN_USER} from "../redux/actions/actions";
-import {API_authUser, API_registerUser} from "../utils/API";
+import {putUser} from "../redux/actions/actions";
+import {API_authUser, API_postToken, API_registerUser} from "../utils/API";
+import {LOGIN_USER, POST_TOKEN, REGISTER_USER} from "../shared/constants";
 
 function* workerRegister({payload}) {
     try {
@@ -34,4 +35,20 @@ function* workerLogin({payload}) {
 
 export function* watchLogin() {
     yield takeLatest(LOGIN_USER, workerLogin)
+}
+
+function* workerPostToken({payload}) {
+    try {
+        const data = yield call(API_postToken, payload);
+        yield put(putUser(data))
+    }
+
+    catch (error) {
+        console.log(error);
+    }
+
+}
+
+export function* watchPostToken() {
+    yield takeLatest(POST_TOKEN, workerPostToken)
 }

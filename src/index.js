@@ -12,13 +12,12 @@ import createSagaMiddleware from 'redux-saga';
 import {Routing} from "./routing";
 import {Navbar} from "./core/Navbar";
 import './index.css';
-import {watchRegister, watchLogin} from "./saga/sagas";
+import {rootSaga} from "./saga/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, compose(applyMiddleware(sagaMiddleware),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
-sagaMiddleware.run(watchRegister);
-sagaMiddleware.run(watchLogin);
+sagaMiddleware.run(rootSaga);
 
 
 ReactDOM.render(

@@ -15,11 +15,14 @@ export const API_registerUser = async ({username, password, email}) => {
 }
 
 export const API_authUser = async ({username, password}) => {
-  const data =  await API.post('auth/jwt/create/', {
-    'username' : username,
-    'password' : password,
+  return await API.post('auth/jwt/create/', {
+    'username': username,
+    'password': password,
   });
+}
 
-  console.log(data);
-  return data;
+export const API_postToken = async ({token}) => {
+  return await API.post('auth/jwt/create/', {
+    'token' : token,
+  });
 }
